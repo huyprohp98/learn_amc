@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,7 +6,6 @@ import 'package:learn_flutter_amc/bloc/bloc_auth/auth_bloc.dart';
 import 'package:learn_flutter_amc/bloc/bloc_auth/auth_state.dart';
 import 'package:learn_flutter_amc/data/repositories/auth_repository.dart';
 import 'package:learn_flutter_amc/ui/features/account/login/login_screen.dart';
-import 'package:learn_flutter_amc/ui/features/home/home_content_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -55,11 +55,13 @@ class HomeScreen extends StatelessWidget {
                       onPressed: () {
                         // Signing out the user
                         context.read<AuthBloc>().signOutRequested();
-                        Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => const LoginScreen()),
-                          (route) => false,
-                        );
+                        AutoRouter.of(context).pop();
+
+                        // Navigator.of(context).pushAndRemoveUntil(
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const LoginScreen()),
+                        //   (route) => false,
+                        // );
                       },
                     ),
                   ],

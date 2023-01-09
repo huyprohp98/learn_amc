@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter_amc/bloc/bloc_auth/auth_bloc.dart';
-import 'package:learn_flutter_amc/ui/features/account/login/login_screen.dart';
 
 class HomeContentScreen extends StatelessWidget {
   var user;

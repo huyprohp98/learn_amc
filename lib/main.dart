@@ -1,24 +1,25 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:learn_flutter_amc/ui/features/account/login/login_screen.dart';
 
 import 'bloc/bloc_auth/auth_bloc.dart';
 import 'data/repositories/auth_repository.dart';
+import 'route/app_route.gr.dart';
 
 Future<void> main() async {
+  await init();
+  runApp(MyApp());
+}
+
+Future init() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // runApp(const MaterialApp(home: MyApp()));
-
-  runApp(const MyApp());
+  //chua dung den
 }
-// void main() {
-//   runApp(const MyApp());
-// }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  final _appRouter = AppRouter();
 
   // This widget is the root of your application.
   @override
@@ -33,7 +34,12 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ],
-          child: const MaterialApp(home: LoginScreen()),
+          // child: const MaterialApp(home: LoginScreen()),
+          child: MaterialApp.router(
+            title: "Learn Amc Bloc",
+            routerDelegate: _appRouter.delegate(),
+            routeInformationParser: _appRouter.defaultRouteParser(),
+          ),
         ));
   }
 }
